@@ -36,30 +36,39 @@ class App extends Component {
     { name: 'Tirupati', country: 'India' },
     ];
     this.list2=this.FilterElement();
+    this.liList=this.wrap();
   }
 
-  FilterElement() {
-    let c=1;
-    const citiesIndian=this.cityList.map((city)=>{
-      if(city.country=='India'){
-        let keyloc="location"+c++;
+  wrap(){
+      console.log(this.list2);
+    let c=0;
+    const wrapcity=this.list2.map((city)=>{
+        let keyloc='location';
         return(
-          <li key={keyloc}>{city.name}</li>
+            <li key={keyloc+(c++)}>{city}</li>
         );
-      }
-        
-      }
-    );
-
+    });
     return(
-      <ol>{citiesIndian}</ol>
-    );
+        <ol>{wrapcity}</ol>
+    )
+  }
+ 
+  FilterElement() {
+    let indCity=[];
+    this.cityList.forEach((city)=>{
+        if(city.country=='India' && !indCity.includes(city.name)){
+            indCity.push(city.name);
+        }
+            
+    });
+    
+    return indCity;
   }
 
   render() {
     return (
       <div id="main">
-        {this.list2}
+        {this.liList}
       </div>
     )
   }
