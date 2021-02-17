@@ -3,7 +3,7 @@ import React, { Component, useState } from "react";
 import '../styles/App.css';
 
 class App extends Component {
-  constructor(props) {
+    constructor(props) {
     super(props)
 
     this.cityList = [{ name: 'Goa', country: 'India' },
@@ -34,13 +34,32 @@ class App extends Component {
     { name: 'Mussoorie', country: 'India' },
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
-    ]
+    ];
+    this.list2=this.FilterElement();
+  }
+
+  FilterElement() {
+    let c=1;
+    const citiesIndian=this.cityList.map((city)=>{
+      if(city.country=='India'){
+        let keyloc="location"+c++;
+        return(
+          <li key={keyloc}>{city.name}</li>
+        );
+      }
+        
+      }
+    );
+
+    return(
+      <ol>{citiesIndian}</ol>
+    );
   }
 
   render() {
     return (
       <div id="main">
-        {/* Do not remove the main div */}
+        {this.list2}
       </div>
     )
   }
